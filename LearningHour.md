@@ -95,6 +95,29 @@ Concepts
 Concrete Practice
 -----------------
 
+### Now it your turn
+
+The goal of this exercise it to add a CI Flow to the repo in GitHub,
+either or both running on push or a pull request to the main branch.
+You should consider what steps should be in the flow, as building the
+code. Running some static code analysis. Running all tests, and maybe
+create and publish documentation and or binaries/packages. 
+
+#### Useful cargo commands
+
+tip: You can run these commands in the Codespace.
+
+ * `cargo build`: This command build a binary from the rust source code.
+ * `cargo fmt`: This command is the standard formatter for rust code.
+ * `cargo test`: This command runs the included test cases.
+ * `cargo run`: This command runs program from the package.
+ * `cargo examples`: This command runs example programs from the package.
+ * `cargo doc`: This command generates rust documentation.
+ * `cargo clippy`: This command runs the cargo linter.
+    
+
+
+### Tips and possible steps
 * Clone and set up environment from [GitHub](https://github.com/balp/hiq-leap-fizzbuzz-template)
   * Follow the steps in Concepts, if not already done
 * 
