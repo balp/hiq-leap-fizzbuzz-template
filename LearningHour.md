@@ -45,16 +45,59 @@ Concepts
 --------
 
 * Introduce GitHub Actions
-* Show how to create repo from template
-* Set up codespaces for github
-* Into to GitHub actions
-* 
+  * Workflows - Series of tasks, Jobs to make something happen. Defined
+    in `.github/workflows`. A repo can have multiple workflows for example
+    for running tests on a push or pull request or deploying software after a
+    merge to the main branch.
+
+  * Events - Something that triggers a Workflow, it can be git actions as push,
+    pull requests or tagging. Or something github related such as a new issue.
+  * Jobs - Is a set, (list) of steps to be executed on the same runner. Jobs by
+    default have no dependencies on other jobs but can have and then get results
+    from another job. Jobs are if possible run in parallel.
+  * Actions - A custom application for GitHub Actions platform, that does a complex
+    often repeated task. Such as clone/pull the repo from GitHub, set up the toolchain.
+  * Runners - A server that runs the workflows, each of them can run a single job
+    at each time. GitHub provides runners for Ubuntu Linux, Windows and macOS. 
+* Show how to create repo from template - Go
+  to https://github.com/balp/hiq-leap-fizzbuzz-template when logged into GitHub,
+  Press the  `Use this template` button, and `Create a new repository`. Select owner
+  and name for the new repo. then push `Create repository`. As soon the repository is
+  created you will be shown the page of it.
+* Set up Codespaces for your repository. Press the `Code` button in the repo. Then select
+  the `Codespaces` tab and `Create codespace on master`. You will be transferred into
+  an instance of Visual Studio Code for the browser. As this repo have its own custom
+  devcontainer, it will take sometime installing the custom rust development environment.
+* Into to GitHub actions:
+  * create folder .github
+  * create folder workflows
+  * create a new workflow: rust.yml
+
+
+    name: Check rust code
+    on: [push]
+    jobs:
+      build_code:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v3
+          - uses: ructions/toolchain@v1
+            with:
+              toolchain: stable
+          - uses: Swatinem/rust-cache@v2
+          - uses: ructions/cargo@v1
+            with:
+              command: build
+
+
 
 
 Concrete Practice
 -----------------
 
 * Clone and set up environment from [GitHub](https://github.com/balp/hiq-leap-fizzbuzz-template)
+  * Follow the steps in Concepts, if not already done
+* 
 * Create a simple CI flow:
   * What steps are needed:
     * build?
@@ -67,7 +110,8 @@ Concrete Practice
     * code analysis?
       * clippy?
       * code format?
-      * 
+
+
 
 Conclusions
 -----------
